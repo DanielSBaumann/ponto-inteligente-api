@@ -1,5 +1,8 @@
 package com.org.dsb.pontoeletronico.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,6 +11,9 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "empresa")
 public class Empresa implements Serializable {
 
@@ -17,10 +23,6 @@ public class Empresa implements Serializable {
     private Date dataCriacao;
     private Date dataAtualizacao;
     private List<Funcionario> funcionarios;
-
-    public Empresa() {
-
-    }
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -42,7 +44,7 @@ public class Empresa implements Serializable {
         this.razaoSocial = razaoSocial;
     }
 
-    @Column(name = "cnpj", nullable = false, length = 15)
+    @Column(name = "cnpj", nullable = false, length = 20)
     public String getCnpj() {
         return cnpj;
     }

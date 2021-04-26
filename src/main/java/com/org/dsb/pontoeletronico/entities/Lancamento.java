@@ -1,12 +1,18 @@
 package com.org.dsb.pontoeletronico.entities;
 
 import com.org.dsb.pontoeletronico.enums.TipoEnum;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "lancamento")
 public class Lancamento {
 
@@ -18,9 +24,6 @@ public class Lancamento {
     private Date dataAtualizacao;
     private TipoEnum tipo;
     private Funcionario funcionario;
-
-    public Lancamento() {
-    }
 
     @Id
     @GeneratedValue(generator = "increment")

@@ -51,10 +51,6 @@ ALTER TABLE `lancamento`
   ADD PRIMARY KEY (`id`);
 
 --
--- Constraints for dumped tables
---
-
---
 -- Constraints for table `funcionario`
 --
 ALTER TABLE `funcionario`

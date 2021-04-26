@@ -1,6 +1,9 @@
 package com.org.dsb.pontoeletronico.entities;
 
 import com.org.dsb.pontoeletronico.enums.PerfilEnum;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -10,6 +13,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "funcionario")
 public class Funcionario {
 
@@ -26,10 +32,6 @@ public class Funcionario {
     private Date dataAtualizacao;
     private Empresa empresa;
     private List<Lancamento> lancamentos;
-
-    public Funcionario() {
-
-    }
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -60,7 +62,7 @@ public class Funcionario {
         this.email = email;
     }
 
-    @Column(name = "senha", nullable = false, length = 20)
+    @Column(name = "senha", nullable = false, length = 100)
     public String getSenha() {
         return senha;
     }
