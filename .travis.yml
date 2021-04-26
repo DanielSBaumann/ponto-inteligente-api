@@ -1,2 +1,5 @@
 language: java
-  - oraclejdk8
+jdk:
+  - openjdk8
+before_install:
+  - chmod +x mvnw
