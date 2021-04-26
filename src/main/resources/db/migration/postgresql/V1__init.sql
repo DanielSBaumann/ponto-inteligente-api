@@ -1,13 +1,13 @@
 CREATE TABLE `empresa` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cnpj` varchar(255) NOT NULL,
   `data_atualizacao` datetime NOT NULL,
   `data_criacao` datetime NOT NULL,
   `razao_social` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 CREATE TABLE `funcionario` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cpf` varchar(255) NOT NULL,
   `data_atualizacao` datetime NOT NULL,
   `data_criacao` datetime NOT NULL,
@@ -19,10 +19,10 @@ CREATE TABLE `funcionario` (
   `senha` varchar(255) NOT NULL,
   `valor_hora` decimal(19,2) DEFAULT NULL,
   `empresa_id` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 CREATE TABLE `lancamento` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `data` datetime NOT NULL,
   `data_atualizacao` datetime NOT NULL,
   `data_criacao` datetime NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE `lancamento` (
   `localizacao` varchar(255) DEFAULT NULL,
   `tipo` varchar(255) NOT NULL,
   `funcionario_id` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 --
 -- Indexes for table `empresa`
@@ -42,31 +42,14 @@ ALTER TABLE `empresa`
 -- Indexes for table `funcionario`
 --
 ALTER TABLE `funcionario`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK4cm1kg523jlopyexjbmi6y54j` (`empresa_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lancamento`
 --
 ALTER TABLE `lancamento`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK46i4k5vl8wah7feutye9kbpi4` (`funcionario_id`);
+  ADD PRIMARY KEY (`id`);
 
---
--- AUTO_INCREMENT for table `empresa`
---
-ALTER TABLE `empresa`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `funcionario`
---
-ALTER TABLE `funcionario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `lancamento`
---
-ALTER TABLE `lancamento`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -82,3 +65,5 @@ ALTER TABLE `funcionario`
 --
 ALTER TABLE `lancamento`
   ADD CONSTRAINT `FK46i4k5vl8wah7feutye9kbpi4` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`id`);
+
+
