@@ -9,7 +9,7 @@ public class PasswordUtils {
 
     private static final Logger log = getLogger(PasswordUtils.class);
 
-    public static String gerarCrypt(String senha) {
+    public static String gerarBCrypt(String senha) {
         if (senha == null) {
             return senha;
         }

@@ -17,7 +17,7 @@ import java.util.List;
 
 import static com.org.dsb.pontoeletronico.enums.PerfilEnum.ROLE_USUARIO;
 import static com.org.dsb.pontoeletronico.enums.TipoEnum.INICIO_ALMOCO;
-import static com.org.dsb.pontoeletronico.utils.PasswordUtils.gerarCrypt;
+import static com.org.dsb.pontoeletronico.utils.PasswordUtils.gerarBCrypt;
 import static java.math.BigDecimal.valueOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -96,7 +96,7 @@ public class LancamentoRepositoryTest {
                 .builder()
                 .nome("Fulano Qualquer")
                 .perfil(ROLE_USUARIO)
-                .senha(gerarCrypt("HereMyPassword"))
+                .senha(gerarBCrypt("HereMyPassword"))
                 .cpf(CPF)
                 .email(EMAIL)
                 .empresa(empresa)

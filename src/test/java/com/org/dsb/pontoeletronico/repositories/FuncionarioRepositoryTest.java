@@ -12,7 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.Date;
 
 import static com.org.dsb.pontoeletronico.enums.PerfilEnum.ROLE_USUARIO;
-import static com.org.dsb.pontoeletronico.utils.PasswordUtils.gerarCrypt;
+import static com.org.dsb.pontoeletronico.utils.PasswordUtils.gerarBCrypt;
 import static java.math.BigDecimal.valueOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -42,7 +42,7 @@ public class FuncionarioRepositoryTest {
     }
 
     @AfterEach
-    public final void tearDown() throws Exception{
+    public final void tearDown() throws Exception {
         this.empresaRepository.deleteAll();
     }
 
@@ -83,7 +83,7 @@ public class FuncionarioRepositoryTest {
                 .builder()
                 .nome("Fulano Qualquer")
                 .perfil(ROLE_USUARIO)
-                .senha(gerarCrypt("HereMyPassword"))
+                .senha(gerarBCrypt("HereMyPassword"))
                 .cpf(CPF)
                 .email(EMAIL)
                 .empresa(empresa)
