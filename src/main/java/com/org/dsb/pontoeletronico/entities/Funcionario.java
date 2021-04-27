@@ -3,6 +3,7 @@ package com.org.dsb.pontoeletronico.entities;
 import com.org.dsb.pontoeletronico.enums.PerfilEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Data
 @Entity
 @Builder
 @AllArgsConstructor

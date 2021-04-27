@@ -10,12 +10,13 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.Optional;
 
-@Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class CadastroPJDto {
+@NoArgsConstructor
+@Data
+public class CadastroPFDto {
 
     private Long id;
 
@@ -36,11 +37,11 @@ public class CadastroPJDto {
     @CPF(message = "Cpf invalido!")
     private String cpf;
 
-    @NotEmpty(message = "Razão social não pode ser vazio!")
-    @Length(min = 5, max = 200, message = "Razão social deve conter entre 5 e 200 caracteres")
-    private String razaoSocial;
-
     @NotEmpty(message = "Cnpj não pode ser vazio!")
     @CNPJ(message = "Cnpj invalido!")
     private String cnpj;
+
+    private Optional<String> valorHora = Optional.empty();
+    private Optional<String> qtdHorasTrabalhoDia = Optional.empty();
+    private Optional<String> qtdHorasAlmoco = Optional.empty();
 }
