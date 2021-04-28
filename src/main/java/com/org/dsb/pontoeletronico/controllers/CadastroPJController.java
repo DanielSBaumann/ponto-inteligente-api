@@ -130,6 +130,10 @@ public class CadastroPJController {
      */
     private Funcionario converterDtoParaFuncionario(CadastroPJDto cadastroPJDto, BindingResult result, Empresa empresa)
             throws NoSuchAlgorithmException {
+        /**
+         * Vem daqui a persistencia!!!!
+         * Verificar metodo...
+         */
         return Funcionario
                 .builder()
                 .nome(cadastroPJDto.getNome())

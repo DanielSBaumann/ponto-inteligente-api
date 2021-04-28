@@ -180,6 +180,11 @@ public class Funcionario {
         final Date atual = new Date();
         dataCriacao = atual;
         dataAtualizacao = atual;
+        /*Teste*/
+        valorHora = BigDecimal.valueOf(0);
+        qtdHorasTrabalhoDia = 0f;
+        qtdHorasAlmoco = 0f;
+        /*Teste*/
     }
 
     public String toString() {
