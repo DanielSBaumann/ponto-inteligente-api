@@ -1,6 +1,5 @@
 package com.org.dsb.pontoeletronico.security.dtos;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +7,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@Builder
 @NoArgsConstructor
 public class JwtAuthenticationDto {
 
