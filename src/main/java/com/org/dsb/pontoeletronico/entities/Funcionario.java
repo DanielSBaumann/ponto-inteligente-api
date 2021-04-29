@@ -1,11 +1,11 @@
 package com.org.dsb.pontoeletronico.entities;
 
-import com.org.dsb.pontoeletronico.enums.PerfilEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import com.org.dsb.pontoeletronico.enums.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

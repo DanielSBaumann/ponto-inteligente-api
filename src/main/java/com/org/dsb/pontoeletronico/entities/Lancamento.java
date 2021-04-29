@@ -1,6 +1,6 @@
 package com.org.dsb.pontoeletronico.entities;
 
-import com.org.dsb.pontoeletronico.enums.TipoEnum;
+import com.org.dsb.pontoeletronico.enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -64,7 +64,7 @@ public class Lancamento {
         this.localizacao = localizacao;
     }
 
-    @Column(name = "data_cricao", nullable = false)
+    @Column(name = "data_criacao", nullable = false)
     public Date getDataCriacao() {
         return dataCriacao;
     }
