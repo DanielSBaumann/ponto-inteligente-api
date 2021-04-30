@@ -1,1 +1,1 @@
-java -Dserver.port=19218 $JAVA_OPTS -jar target/pontoeletronico-0.0.1-SNAPSHOT.jar
+java -Dserver.port=$PORT $JAVA_OPTS -jar target/pontoeletronico-0.0.1-SNAPSHOT.jar
