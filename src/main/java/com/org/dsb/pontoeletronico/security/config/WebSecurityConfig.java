@@ -60,10 +60,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated();
+                    .antMatchers("/auth/**",
+                            "/swagger-ui.html/**",
+                            "/swagger/**").permitAll()
+                    .antMatchers("/auth/**"
+                            //Swagger
+                            ,"/v2/api-docs",
+                            "/configuration/ui",
+                            "/swagger-resources",
+                            "/configuration/security", //Swagger
+                            "/swagger-ui.html",
+                            "/webjars/**",
+                            "/swagger-resources/configuration/ui",
+                            "/swagger-ui.html"
+                            //Swagger
+                    ).permitAll()
+                    .anyRequest().authenticated();
 
         httpSecurity
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
@@ -73,8 +85,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cacheControl();
     }
 }
-
-
+/*
+.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**","/swagger-resources/configuration/ui","/swagger-ui.html").permitAll()
+ */
+//.antMatchers("/swagger-ui.html/**").permitAll()
+//.antMatchers("/swagger").permitAll()
 
 
 
