@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
 import static com.org.dsb.pontoeletronico.enums.PerfilEnum.ROLE_ADMIN;
@@ -15,6 +16,7 @@ import static com.org.dsb.pontoeletronico.enums.PerfilEnum.ROLE_USUARIO;
 import static com.org.dsb.pontoeletronico.utils.PasswordUtils.gerarBCrypt;
 
 @SpringBootApplication
+@EnableCaching
 public class PontoeletronicoApplication {
 
     @Autowired

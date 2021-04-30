@@ -5,9 +5,11 @@ import com.org.dsb.pontoeletronico.repositories.LancamentoRepository;
 import com.org.dsb.pontoeletronico.services.LancamentoService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import springfox.documentation.annotations.Cacheable;
 
 import java.util.Optional;
 
@@ -26,11 +28,13 @@ public class LancamentoServiceImpl implements LancamentoService {
         return this.lancamentoRepository.findByFuncionarioId(funcionarioId, pageRequest);
     }
 
+    @Cacheable("lancamentoPorId")
     public Optional<Lancamento> buscarPorId(Long id) {
         log.info("Buscando um lancamento pelo id: {}", id);
         return this.lancamentoRepository.findById(id);
     }
 
+    @CachePut("lancamentoPorId")
     public Lancamento persistir(Lancamento lancamento) {
         log.info("Persistindo o lancamento: {}", lancamento);
         return this.lancamentoRepository.save(lancamento);

@@ -41,13 +41,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+    public JwtAuthenticationTokenFilter authenticationTokenFilterBean()
+            throws Exception {
         return new JwtAuthenticationTokenFilter();
     }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
+    public AuthenticationManager authenticationManagerBean()
+            throws Exception {
         return super.authenticationManagerBean();
     }
 
@@ -60,36 +62,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/auth/**",
-                            "/swagger-ui.html/**",
-                            "/swagger/**").permitAll()
-                    .antMatchers("/auth/**"
-                            //Swagger
-                            ,"/v2/api-docs",
-                            "/configuration/ui",
-                            "/swagger-resources",
-                            "/configuration/security", //Swagger
-                            "/swagger-ui.html",
-                            "/webjars/**",
-                            "/swagger-resources/configuration/ui",
-                            "/swagger-ui.html"
-                            //Swagger
+                    .antMatchers(
+                        "/auth/**",
+                          // "/api/lancamentos/**" ,
+                        //Swagger
+                        "/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources",
+                        "/swagger-ui.html",
+                        "/webjars/**",
+                        "/swagger-resources/configuration/ui",
+                        "/swagger-ui.html"
+                        //Swagger
                     ).permitAll()
-                    .anyRequest().authenticated();
+                .anyRequest()
+                    .authenticated();
 
         httpSecurity
-                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(authenticationTokenFilterBean(),
+                        UsernamePasswordAuthenticationFilter.class);
 
         httpSecurity
                 .headers()
                 .cacheControl();
     }
 }
-/*
-.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**","/swagger-resources/configuration/ui","/swagger-ui.html").permitAll()
- */
-//.antMatchers("/swagger-ui.html/**").permitAll()
-//.antMatchers("/swagger").permitAll()
 
 
 
