@@ -1,17 +1,18 @@
+--Initial Script
 CREATE TABLE empresa (
   id bigint NOT NULL,
-  cnpj varchar(255) NOT NULL,
-  data_atualizacao date NOT NULL,
-  data_criacao date NOT NULL,
+  cnpj varchar(255) NOT NULL UNIQUE,
+  data_atualizacao date NOT NULL DEFAULT CURRENT_DATE,
+  data_criacao date NOT NULL DEFAULT CURRENT_DATE,
   razao_social varchar(255) NOT NULL
 );
 
 CREATE TABLE funcionario (
   id bigint NOT NULL ,
-  cpf varchar(255) NOT NULL,
-  data_atualizacao date NOT NULL,
-  data_criacao date NOT NULL,
-  email varchar(255) NOT NULL,
+  cpf varchar(255) NOT NULL UNIQUE,
+  data_atualizacao date NOT NULL DEFAULT CURRENT_DATE,
+  data_criacao date NOT NULL DEFAULT CURRENT_DATE,
+  email varchar(255) NOT NULL UNIQUE,
   nome varchar(255) NOT NULL,
   perfil varchar(255) NOT NULL,
   qtd_horas_almoco float DEFAULT NULL,
@@ -23,9 +24,9 @@ CREATE TABLE funcionario (
 
 CREATE TABLE lancamento (
   id bigint NOT NULL,
-  data date NOT NULL,
-  data_atualizacao date NOT NULL,
-  data_criacao date NOT NULL,
+  data date NOT NULL DEFAULT CURRENT_DATE,
+  data_atualizacao date NOT NULL DEFAULT CURRENT_DATE,
+  data_criacao date NOT NULL DEFAULT CURRENT_DATE,
   descricao varchar(255) DEFAULT NULL,
   localizacao varchar(255) DEFAULT NULL,
   tipo varchar(255) NOT NULL,

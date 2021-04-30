@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -53,6 +54,7 @@ public class LancamentoControllerTest {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Test
+    @WithMockUser
     public void cadastrarLancamento() throws Exception {
         Lancamento lancamento = obterDadosLancamento();
 
@@ -74,6 +76,7 @@ public class LancamentoControllerTest {
     }
 
     @Test
+    @WithMockUser
     public void cadastrarLancamentoFuncionarioIdInvalido() throws Exception {
         given(this.funcionarioService.buscarPorId(anyLong()))
                 .willReturn(Optional.empty());
@@ -88,6 +91,7 @@ public class LancamentoControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@email.com", roles = {"ADMIN"})
     public void removerLancamento() throws Exception {
         given(this.lancamentoService.buscarPorId(anyLong()))
                 .willReturn(Optional.of(new Lancamento()));
@@ -97,6 +101,17 @@ public class LancamentoControllerTest {
     }
 
     @Test
+    @WithMockUser
+    public void removerLancamentoNegado() throws Exception {
+        given(this.lancamentoService.buscarPorId(anyLong()))
+                .willReturn(Optional.of(new Lancamento()));
+        mvc.perform(delete(URL_BASE + ID_LANCAMENTO)
+                .accept(APPLICATION_JSON))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    @WithMockUser
     private Lancamento obterDadosLancamento() {
 
         Lancamento lancamento = Lancamento

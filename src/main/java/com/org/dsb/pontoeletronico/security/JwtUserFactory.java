@@ -1,5 +1,6 @@
 package com.org.dsb.pontoeletronico.security;
 
+import com.org.dsb.pontoeletronico.entities.Funcionario;
 import com.org.dsb.pontoeletronico.enums.*;
 import com.org.dsb.pontoeletronico.security.entities.Usuario;
 import lombok.NoArgsConstructor;
@@ -17,8 +18,9 @@ public class JwtUserFactory {
      *
      * @param usuario
      * @return JwtUser
+     * --Alterecao de Usuario para Funcionario--
      */
-    public static JwtUser create(Usuario usuario) {
+    public static JwtUser create(Funcionario usuario) {
         return new JwtUser(
                 usuario.getId(),
                 usuario.getEmail(),
