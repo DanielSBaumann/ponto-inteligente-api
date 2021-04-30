@@ -8,21 +8,11 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ApiKey;
-import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.SecurityReference;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.ApiKeyVehicle;
 import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static springfox.documentation.builders.PathSelectors.any;
 import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
@@ -45,8 +35,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(SWAGGER_2)
                 .apiInfo(apiInfo())
-//                .securityContexts(Arrays.asList(securityContext()))
-//                .securitySchemes(Arrays.asList(apiKey()))
+
                 .select()
                 .apis(basePackage(DIR))
                 .paths(any())
@@ -61,7 +50,29 @@ public class SwaggerConfig {
                 .version("1.0")
                 .build();
     }
+
+    @Bean
+    public SecurityConfiguration security() {
+        String token;
+        try {
+            UserDetails userDetails = this.userDetailsService
+                    .loadUserByUsername("admin@mail.com");
+            token = this.jwtTokenUtil
+                    .obterToken(userDetails);
+        } catch (Exception e) {
+            token = "";
+        }
+        return new SecurityConfiguration(
+                null, null, null, null,
+                "Bearer " + token,
+                ApiKeyVehicle.HEADER,
+                "Authorization", ","
+        );
+    }
+
 }
+//                .securityContexts(Arrays.asList(securityContext()))
+//                .securitySchemes(Arrays.asList(apiKey()))
 
 //    private ApiKey apiKey() {
 //        return new ApiKey("JWT", "Authorization", "header");
@@ -78,23 +89,4 @@ public class SwaggerConfig {
 //        return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
 
 
-
-//    @Bean
-//    public SecurityConfiguration security() {
-//        String token;
-//        try {
-//            UserDetails userDetails = this.userDetailsService
-//                    .loadUserByUsername("admin@mail.com");
-//            token = this.jwtTokenUtil
-//                    .obterToken(userDetails);
-//        } catch (Exception e) {
-//            token = "";
-//        }
-//        return new SecurityConfiguration(
-//                null, null, null, null,
-//                "Bearer " + token,
-//                ApiKeyVehicle.HEADER,
-//                "Authorization", ","
-//        );
-//    }
 //}
